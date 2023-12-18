@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-hooks-useform": "^0.1.86",
+    "react-router-dom": "^6.21.0",
+    "sass": "^1.69.5"
+  }
+}

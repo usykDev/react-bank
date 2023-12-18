@@ -1,0 +1,87 @@
+@use '../../style/' as s;
+@use '../../style/form.scss' as form;
+
+html {
+  background-color: black;
+}
+
+.front_page {
+  display: grid;
+  grid-template-rows: min-content min-content 1fr;
+  height: 853px;
+  width: 393px;
+  
+  background-color: s.color(white);
+  position: relative;
+}
+
+.front_page--background {
+  background-image: url("./background.png");
+  background-position: center top;
+  height: 583px;
+  background-size: cover;
+  border-radius: 0px 0px 32px 32px;
+}
+
+.front_page--background::before {
+  content: "";
+  position: absolute;
+  top: 55px;
+  right: -59px;
+  bottom: 0;
+  left: 0;
+  background-image: url("./bank-image.png");
+ 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.front_page--content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 30%;
+  gap: 16px;
+  width: fit-content;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 600;
+  color: s.color(white);
+}
+
+.subtitle {
+  font-size: 18px;
+  color: s.color(white);
+}
+
+.buttons_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 85%;
+  padding: 0 14px;
+}
+
+.button {
+  @include s.click;
+
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid s.color(main);
+  color: s.color(main);
+  background-color: s.color(white);
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  z-index: 1;
+}
+
+.button--purple {
+  background-color: s.color(main);
+  color: s.color(white);
+}

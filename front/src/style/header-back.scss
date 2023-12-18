@@ -1,0 +1,11 @@
+@use './index' as s;
+
+
+.back-button {
+	@include s.click;
+
+	padding: 5px;
+	width: fit-content;
+	
+}
+

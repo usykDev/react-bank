@@ -1,0 +1,86 @@
+@use '../../style' as s;
+@use '../../style/form.scss' as form;
+
+.main {
+	display: grid;
+	grid-template-rows: min-content min-content 1fr;
+	height: 853px;
+	width: 393px;
+	gap: s.space(7);
+	padding: 56px 14px 0 14px;
+	background-color: s.color(white);
+	position: relative;
+  }
+
+.page__title {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: s.space(3);
+}
+
+.main__title {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.sub__title {
+	font-size: 14px;
+	color: s.color(gray);
+}
+
+
+.page__section {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(5);
+}
+
+
+
+.alert {
+	background-color: rgba(242, 136, 61, 0.10);
+	color: s.color(orange);
+	padding: 16px;
+	display: grid;
+	justify-items: center;
+	position: relative;
+
+	&--disabled {
+		display: none;
+	}
+  }
+  
+  .alert__icon {
+	background-image: url("../../../public/svg/danger-sign.svg");
+	background-repeat: no-repeat;
+	width: 20px; 
+	height: 20px; 
+	position: absolute;
+	top: 14px; 
+	left: 30px; 
+  }
+
+
+  .form {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(3);
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: s.space(2);
+	}
+
+	&__error {
+		color: red;
+		font-size: 12px;
+		display: none;
+
+		&--active {
+			display: block;
+		}
+	}
+}
+
