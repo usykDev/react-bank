@@ -1,0 +1,5 @@
+@use '../../style' as s;
+
+.button-notifications {
+	@include s.click;
+}

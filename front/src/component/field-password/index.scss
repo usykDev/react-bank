@@ -1,0 +1,31 @@
+@use '../../style' as s;
+
+.field--password {
+	height: 100%;
+	
+	.field__wrapper {
+		width: 100%;
+		display: grid;
+		gap: s.space(2);
+		position: relative;
+
+		.field__icon {
+			@include s.click;
+
+			display: block;
+			height: 22px;
+			width: 22px;
+
+			background-image: url('../../../public/svg/password-hide.svg');
+			background-size: cover;
+
+			&[show] {
+				background-image: url('../../../public/svg/password-show.svg');
+			}
+
+			position: absolute;
+			right: 16px;
+			top: 14px;
+		}
+	}
+}

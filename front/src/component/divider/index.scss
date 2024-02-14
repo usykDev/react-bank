@@ -1,0 +1,7 @@
+@use '../../style' as s;
+
+.page__divider {
+	width: 100%;
+	height: 1px;
+	background: s.color(box);
+}

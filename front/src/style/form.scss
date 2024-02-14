@@ -1,0 +1,155 @@
+@use './index' as s;
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(3);
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: s.space(2);
+	}
+
+	&__error {
+		display: none;
+
+		&--active {
+			display: block;
+			color: s.color(red);
+			font-size: 12px;
+		}
+	}
+}
+
+.button {
+	@include s.click;
+
+	color: s.color(white);
+	background: s.color(main);
+	font-size: 16px;
+	line-height: 100%;
+	padding: s.space(4) s.space(8);
+	border-radius: 10px;
+	border: 2px solid s.color(main);
+	margin: s.space(2) 0 ;
+
+	text-decoration: none;
+	text-align: center;
+	width: 100%;
+
+	z-index: 1;
+
+	&:active {
+		opacity: 0.3;
+	}
+
+	&--disabled {
+		opacity: 0.5;
+		cursor: default;
+
+		&:hover,
+		&:active {
+			opacity: 0.5;
+			cursor: default;
+		}
+	}
+
+	&--white {
+		background-color: s.color(white);
+		color: s.color(main);
+		border: 1.5px solid s.color(main);
+	  }
+
+	&--red {
+	background-color: s.color(white);
+	color: s.color(red);
+	border: 1.5px solid s.color(red);
+	}
+}
+
+.alert {
+	border: 1px solid transparent;
+	border-radius: 10px;
+	padding: s.space(3) s.space(4);
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+
+
+	&--success {
+		color: s.color(green);
+		background-color: s.color(green-light);
+
+		&::before {
+            content: "";
+            display: block;
+            height: 14px;
+            width: 14px;
+            background-image: url('../../public/svg/done-sign.svg');
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            background-position: center center;
+			margin-right: 8px; 
+        }
+	}
+
+	&--progress {
+		color: s.color(blue);
+		background-color: s.color(blue-light);
+
+		&::before {
+            content: "";
+            display: block;
+            height: 14px;
+            width: 14px;
+            background-image: url('../../public/svg/loading-sign.svg');
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            background-position: center center;
+			margin-right: 8px; 
+        }
+	}
+
+
+	&--error {
+		color: s.color(orange);
+		background-color: s.color(orange-light);
+		
+		
+		&::before {
+            content: "";
+            display: block;
+            height: 14px;
+            width: 14px;
+            background-image: url('../../public/svg/danger-sign.svg');
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            background-position: center center;
+			margin-right: 8px; 
+        }
+	}
+
+	
+	&--disabled {
+		display: none;
+	}
+
+}
+
+
+
+.link {
+	color: s.color(main);
+	font-size: 14px;
+	text-decoration: underline;
+	
+	@include s.click;
+}
+
+.link__prefix {
+	font-size: 14px;
+	color: s.color(dark);
+}
+

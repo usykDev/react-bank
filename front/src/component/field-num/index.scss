@@ -1,0 +1,53 @@
+@use '../../style' as s;
+@use '../../style/form.scss' as form;
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(2);
+	position: relative;
+
+	&__label {
+		font-size: 16px;
+		color: s.color(dark);
+		&--bold {
+			font-weight: 500;
+		}
+	}
+
+	&__input-num {
+		border: 1px solid s.color(box);
+		background-color: s.color(white);
+		width: 100%;
+		padding: s.space(3.5) s.space(6);
+		border-radius: 10px;
+
+		font-size: 14px;
+
+		&::placeholder {
+			color: s.color(gray);
+		}
+
+		color: s.color(dark);
+
+		transition: border-color 0.3s;
+
+		&:hover {
+			border-color: s.color(gray);
+		}
+
+		&:focus {
+			border-color: s.color(main);
+		}
+
+		&--validation {
+			border-color: s.color(red) !important
+		}
+	}
+}
+
+
+.error__message {
+	color: s.color(red);
+	font-size: 12px;
+	border-color: s.color(red)
+}

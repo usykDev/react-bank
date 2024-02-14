@@ -1,0 +1,69 @@
+@use '../../style' as s;
+
+@use '../../style/form.scss' as form;
+
+.welcome-page {
+	font-family: 'Jost', sans-serif;
+	display: grid;
+	grid-template-rows: min-content min-content 1fr;
+	height: 850px;
+	width: 427px;
+	position: relative;
+	background-color: s.color(white);
+  }
+
+  
+  .welcome-page__background {
+	background-image: url("../../../public/img/background.png");
+	background-color: #8168E9;
+	background-position: center top;
+	height: 583px;
+	width: 427px;
+	background-size: cover;
+	border-radius: 0px 0px 32px 32px;
+  }
+  
+  .welcome-page__background::before {
+	content: "";
+	position: absolute;
+	top: 44px;
+	right: -92.5px;
+	bottom: 0;
+	left: 0;
+	background-image: url("../../../public/img/bank-image.png");
+   
+	background-position: center;
+	background-repeat: no-repeat;
+  }
+  
+  .welcome-page__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+  
+	
+	padding: 30%;
+	gap: 16px;
+	width: max-content;
+  }
+  
+  .title {
+	font-size: 42px;
+	font-weight: 600;
+	color: s.color(white);
+  }
+  
+  .subtitle {
+	font-size: 18px;
+	color: s.color(white);
+  }
+  
+  .button__section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 75%;
+	padding: 0 s.space(4);
+  }
+  

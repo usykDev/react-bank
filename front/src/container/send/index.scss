@@ -1,0 +1,43 @@
+@use '../../style' as s;
+@use '../../style/form.scss' as form;
+@use '../../style/account.scss' as a;
+
+
+
+.field--num__wrapper {
+	position: relative;
+
+	&::after {
+		content: "$ ";
+		position: absolute;
+		color: s.color(dark);
+		font-size: 14px;
+		top: 42.5px;
+		left: 15px;
+		pointer-events: none; 
+	}	
+}
+
+.button--password {
+	@include s.click;
+
+	background-color: s.color(white);
+	color: s.color(main);
+	border: 1.5px solid s.color(main);
+	font-size: 16px;
+	line-height: 100%;
+	padding: s.space(4) s.space(8);
+	border-radius: 10px;
+	margin: s.space(2) 0 ;
+
+	text-decoration: none;
+	text-align: center;
+	width: 100%;
+
+	z-index: 1;
+
+	&:active {
+		opacity: 0.3;
+	}
+}
+

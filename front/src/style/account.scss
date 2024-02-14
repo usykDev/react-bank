@@ -1,0 +1,33 @@
+@use './index' as s;
+
+
+.button-operations__block {
+	display: flex;
+	flex-direction: column;
+	align-items: center
+	}
+	
+	.button-operation {
+		@include s.click;
+	
+		background-color: #5B94E9;
+		padding: 12px;
+		border-radius: 100px;
+		border: 10px solid s.color(white);
+	}
+
+.account-page__header {
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	justify-items: center;
+}
+
+.account-page__title {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.settings__title {
+	font-weight: 500;
+}
+

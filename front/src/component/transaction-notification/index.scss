@@ -1,0 +1,63 @@
+@use '../../style' as s;
+
+
+.card-transaction {
+
+	@include s.click;
+
+	text-decoration: none;
+	color: s.color(dark);
+	display: grid;
+	width: 100%;
+    grid-template-columns: min-content 1fr min-content;
+	align-items: center;
+	background-color: s.color(white);
+	gap: s.space(4);
+	border-radius: 12px;
+
+	&__data {
+		display: flex;
+		flex-direction: column;
+		gap: s.space(1.5);
+	}
+
+	&__title {
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	&__details {
+		display: flex;
+		flex-direction: row;
+		font-size: 12px;
+		color: s.color(gray);
+		align-items: flex-end;
+	}
+
+	&__amount-plus {
+		color: s.color(green);
+		font-weight: 500;
+	}
+	
+	&__amount-minus {
+		color: s.color(dark);
+		font-weight: 500;
+	}
+	
+}
+
+.card-transaction__type::before {
+	content: '\00b7';
+	padding: 0 s.space(1);
+	font-size: 16px; 
+}
+
+.card-transaction__amount-plus:before {
+	content: '+$';
+	font-size: 16px; 
+}
+
+.card-transaction__amount-minus:before {
+	content: '-$';
+	font-size: 16px; 
+}

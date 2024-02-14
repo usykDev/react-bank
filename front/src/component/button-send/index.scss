@@ -1,0 +1,10 @@
+@use '../../style' as s;
+
+.button-send {
+	@include s.click;
+
+	background-color: #5B94E9;
+	padding: 12px;
+	border-radius: 100px;
+    border: 10px solid s.color(white)
+}

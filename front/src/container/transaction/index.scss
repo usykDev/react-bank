@@ -1,0 +1,74 @@
+@use '../../style' as s;
+
+
+@use '../../style/form.scss' as form;
+@use '../../style/account.scss' as a;
+
+.page-transaction__section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: s.space(8);
+	width: 100%;
+}
+
+.transaction__amount {
+	font-size: 38px; 
+	font-weight: 550;
+}
+
+.transaction__amount-plus {
+	color: s.color(green);
+
+	&:before {
+		content: '+$';
+	}
+}
+
+.transaction__amount-minus {
+	color: s.color(dark);
+
+	&:before {	
+		content: '-$';
+	}
+}
+
+.card__transaction--big {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	background-color: s.color(white);
+	padding: s.space(4);
+	border-radius: 12px;
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		font-size: 14px;
+		gap: s.space(4);
+	}
+
+	&__date {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&__address {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&__type {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	
+}
+
+
+

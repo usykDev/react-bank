@@ -1,0 +1,57 @@
+@use '../../style' as s;
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(2);
+
+
+	&__label {
+		font-size: 14px;
+		color: s.color(dark);
+	}
+
+
+	&__input {
+		border: 1px solid s.color(box);
+		background-color: s.color(white);
+		width: 100%;
+
+
+		padding: s.space(3.5);
+		border-radius: 10px;
+
+		font-size: 14px;
+
+		&::placeholder {
+			color: s.color(gray);
+		}
+
+		color: s.color(dark);
+
+		transition: border-color 0.3s;
+
+		&:hover {
+			border-color: s.color(gray);
+		}
+
+		&:focus {
+			border-color: s.color(main);
+		}
+	}
+}
+
+input:invalid[focused="true"] {
+	border-color: s.color(red)
+}
+
+span {
+	color: s.color(red);
+	font-size: 12px;
+	display: none;
+}
+
+input:invalid[focused="true"] ~ span {
+	display: block;
+}
+
