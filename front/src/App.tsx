@@ -14,6 +14,7 @@ import NotificationPage from "./container/notifications";
 import SendPage from "./container/send";
 import ReceivePage from "./container/receive";
 import TransactionPage from "./container/transaction";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import SettingsPage from "./container/settings";

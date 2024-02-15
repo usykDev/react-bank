@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Page from "../../page";
 
 import BackButtonComponent from "../../component/back-button";

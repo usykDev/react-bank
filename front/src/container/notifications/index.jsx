@@ -46,7 +46,7 @@ const NotificationPage = () => {
         <div className="account-page__title">Notifications</div>
       </header>
 
-      <main className="notifications__section">
+      <main className="page__section">
         {notifications && notifications.length > 0 ? (
           notifications.map((notification, index) => (
             <Notification

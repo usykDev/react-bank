@@ -1,4 +1,3 @@
-// Підключаємо роутер до бек-енду
 const express = require('express')
 const router = express.Router()
 
@@ -34,5 +33,4 @@ router.use('/', auth)
 const account = require('./account')
 router.use('/', account)
 
-// Експортуємо глобальний роутер
 module.exports = router

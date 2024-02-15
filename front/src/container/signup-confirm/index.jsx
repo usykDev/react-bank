@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import Page from "../../page";
-import BackButtonComponent from "../../component/back-button";
 import Field from "../../component/field";
 import { saveSession, getTokenSession } from "../../script/session";
 import "./index.scss";
@@ -16,7 +15,7 @@ const SignupConfirmForm = () => {
     code: "",
   });
 
-  const { authState } = useAuth();
+  const { authState, logout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -90,10 +89,6 @@ const SignupConfirmForm = () => {
 
   return (
     <Page>
-      <header>
-        <BackButtonComponent />
-      </header>
-
       <form onSubmit={handleSubmit} className="page__section">
         <h1 className="page__header">
           <div className="page__title">Confirm account</div>
@@ -124,6 +119,10 @@ const SignupConfirmForm = () => {
           className={`button ${disabled ? "button--disabled" : ""}`}
         >
           Send
+        </button>
+
+        <button className="button button--red" onClick={logout}>
+          Logout
         </button>
 
         <span

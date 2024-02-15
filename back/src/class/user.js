@@ -29,6 +29,9 @@ class User {
 
   receive(amount) {
     if (!isNaN(amount)) {
+      if (amount % 1 !== 0) {
+        amount = Math.round(amount * 100) / 100
+      }
       this.balance += Number(amount)
 
       return this.balance
@@ -83,6 +86,8 @@ class User {
   getTransactions() {
     return this.listTransactions
   }
+
+  
 
   static updatePassword(password, passwordNew) {
     const user = this.getByPassword(password)

@@ -1,6 +1,4 @@
-// Підключаємо технологію express для back-end сервера
 const express = require('express')
-// Cтворюємо роутер - місце, куди ми підключаємо ендпоїнти
 const router = express.Router()
 
 const { User } = require('../class/user')
@@ -16,23 +14,18 @@ router.get('/balance', function (req, res) {
     const transactionsCopy = []
 
     transactions.forEach((element) => {
-      const convertTime = (date) => {
-        let hours = date.getHours()
-        let minutes = date.getMinutes()
-        minutes = minutes < 10 ? '0' + minutes : minutes
-        return `${hours}:${minutes}`
-      }
-      const elementCopy = {
-        ...element,
-        date: convertTime(element.date),
-      }
+      const elementCopy = { ...element }
       transactionsCopy.push(elementCopy)
     })
+
+    const roundedBalance = parseFloat(
+      session.user.balance,
+    ).toFixed(2)
 
     transactionsCopy.reverse()
 
     res.status(200).json({
-      balance: session.user.balance,
+      balance: roundedBalance,
       transactions: transactionsCopy || [],
     })
   } catch (error) {
@@ -64,48 +57,8 @@ router.get('/notifications', function (req, res) {
     const notifications = session.user.getNotifications()
     const notificationsCopy = []
 
-    const now = new Date()
-
     notifications.forEach((element) => {
-      const timeDifferenceInSeconds = Math.floor(
-        (now - new Date(element.date)) / 1000,
-      )
-
-      let displayTime
-
-      if (timeDifferenceInSeconds === 0) {
-        displayTime = 'Just now'
-      } else if (timeDifferenceInSeconds < 60) {
-        displayTime = `${timeDifferenceInSeconds} ${
-          timeDifferenceInSeconds === 1
-            ? 'second'
-            : 'seconds'
-        } ago`
-      } else if (timeDifferenceInSeconds < 3600) {
-        const minutes = Math.floor(
-          timeDifferenceInSeconds / 60,
-        )
-        displayTime = `${minutes} ${
-          minutes === 1 ? 'minute' : 'minutes'
-        } ago`
-      } else {
-        const hours = Math.floor(
-          timeDifferenceInSeconds / 3600,
-        )
-        const remainingMinutes = Math.floor(
-          (timeDifferenceInSeconds % 3600) / 60,
-        )
-        displayTime = `${hours} ${
-          hours === 1 ? 'hour' : 'hours'
-        } and ${remainingMinutes} ${
-          remainingMinutes === 1 ? 'minute' : 'minutes'
-        } ago`
-      }
-
-      const elementCopy = {
-        ...element,
-        date: displayTime,
-      }
+      const elementCopy = { ...element }
 
       notificationsCopy.push(elementCopy)
     })
@@ -122,18 +75,6 @@ router.get('/notifications', function (req, res) {
 })
 
 // ==================================
-
-router.get('/receive', function (req, res) {
-  res.render('receive', {
-    name: 'receive',
-
-    component: ['back-button', 'field-num', 'divider'],
-
-    title: 'Receive page',
-
-    data: {},
-  })
-})
 
 router.post('/receive-stripe', function (req, res) {
   const { amount, token } = req.body
@@ -310,39 +251,9 @@ router.get('/transaction', function (req, res) {
       })
     }
 
-    const convertDate = (date) => {
-      if (!date) {
-        return 'N/A'
-      }
-
-      const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ]
-
-      const day = date.getDate().toString()
-      const month = months[date.getMonth()]
-      const hours = date.getHours().toString()
-      const minutes = date.getMinutes().toString()
-
-      return `${day} ${month}, ${hours}:${minutes}`
-    }
-
-    const formattedDate = convertDate(transaction.date)
-
     res.status(200).json({
       recipient: transaction.recipient,
-      transaction: { ...transaction, date: formattedDate },
+      transaction: transaction,
     })
   } catch (error) {
     console.error(
@@ -353,18 +264,6 @@ router.get('/transaction', function (req, res) {
 })
 
 // ==================================
-
-router.get('/send', function (req, res) {
-  res.render('send', {
-    name: 'send',
-
-    component: ['back-button', 'field-num', 'field'],
-
-    title: 'Send page',
-
-    data: {},
-  })
-})
 
 router.post('/send', function (req, res) {
   const { email, amount, token } = req.body

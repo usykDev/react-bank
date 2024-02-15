@@ -10,7 +10,7 @@ const AuthRoute = ({ element }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 50));
         setLoading(false);
       } catch (error) {
         console.error("Error:", error);

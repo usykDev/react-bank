@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext, useEffect } from "react";
-import { loadSession, saveSession, getSession } from "../script/session";
+import { saveSession, getSession } from "../script/session";
 
 const AuthContext = createContext();
 
@@ -40,7 +40,6 @@ const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    console.log("AuthState updated:", authState);
     const session = getSession();
     if (session) {
       dispatch({

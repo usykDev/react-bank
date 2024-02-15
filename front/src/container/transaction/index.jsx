@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import BackButtonComponent from "../../component/back-button";
@@ -10,9 +9,40 @@ import "./index.scss";
 const TransactionPage = () => {
   const [data, setData] = useState(null);
   const [transactionType, setTransactionType] = useState(null);
+  const [formattedDate, setFormattedDate] = useState(null);
 
   const { authState } = useAuth();
   const location = useLocation();
+
+  const convertDate = (date) => {
+    if (!date) {
+      return "N/A";
+    }
+
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const day = date.getDate().toString();
+    const month = months[date.getMonth()];
+    const hours = date.getHours().toString();
+    let minutes = date.getMinutes().toString();
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+
+    return `${day} ${month}, ${hours}:${minutes}`;
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -27,10 +57,18 @@ const TransactionPage = () => {
           },
         });
 
-        const data = response.data;
+        const transactionData = response.data.transaction;
+        const formattedDate = convertDate(new Date(transactionData.date));
 
-        setData(data);
-        setTransactionType(data?.transaction?.type);
+        setData({
+          ...response.data,
+          transaction: {
+            ...transactionData,
+            date: formattedDate,
+          },
+        });
+        setTransactionType(transactionData.type);
+        setFormattedDate(formattedDate);
       } catch (error) {
         console.error("Error fetching balance data:", error);
       }

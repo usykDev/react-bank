@@ -8,8 +8,14 @@ import axios from "axios";
 const Transaction = ({ id, sender, time, type, amount }) => {
   const [data, setData] = useState(null);
   const { authState } = useAuth();
-
   const navigate = useNavigate();
+
+  const convertTime = (date) => {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    return `${hours}:${minutes}`;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,7 +94,9 @@ const Transaction = ({ id, sender, time, type, amount }) => {
       <div className="card-transaction__data">
         <div className="card-transaction__title">{sender}</div>
         <div className="card-transaction__details">
-          <div className="card-transaction__time">{time}</div>
+          <div className="card-transaction__time">
+            {convertTime(new Date(time))}
+          </div>
           <div className="card-transaction__type">{type}</div>
         </div>
       </div>

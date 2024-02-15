@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Page from "../../page";
 import { useNavigate } from "react-router-dom";
 
 import BackButtonComponent from "../../component/back-button";
 import Field from "../../component/field";
-import FieldPassword from "../../component/field-password";
 import { saveSession } from "../../script/session";
 
 import "./index.scss";

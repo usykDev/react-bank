@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import BackButtonComponent from "../../component/back-button";
 import Divider from "../../component/divider";
-import LoadingSpinner from "../../loading";
 import Field from "../../component/field";
 import FieldPassword from "../../component/field-password";
 import { saveSession } from "../../script/session";
@@ -75,7 +74,7 @@ const ChangeEmailForm = () => {
     return JSON.stringify({
       email: values.email,
       password: values.password,
-      ["token"]: authState.token,
+      token: authState.token,
     });
   };
 
@@ -191,7 +190,7 @@ const ChangePasswordForm = () => {
     return JSON.stringify({
       passwordOld: values.passwordOld,
       passwordNew: values.passwordNew,
-      ["token"]: authState.token,
+      token: authState.token,
     });
   };
 

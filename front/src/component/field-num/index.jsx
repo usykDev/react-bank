@@ -8,7 +8,6 @@ const FieldNumber = (props) => {
     label,
     name,
     onChange,
-
     value,
     labelClassName,
     id,

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { saveSession } from "../../script/session";
 import { useAuth } from "../../context/AuthContext";
+import { validateAmount } from "../../script/utilities";
 import "./index.scss";
 
 const SendPage = () => {
@@ -51,35 +52,6 @@ const SendPage = () => {
     setErrorMessages(newErrorMessages);
   };
 
-  const validateAmount = (amount) => {
-    const errors = [];
-
-    if (amount === "") {
-      errors.push("Please enter the amount you are receiving");
-    }
-
-    if (amount.length > 0 && amount.length > 7) {
-      errors.push("The value must be less than 7 digits");
-    }
-
-    const decimalCount = (amount.split(".")[1] || []).length;
-    if (decimalCount > 2) {
-      errors.push(
-        "A decimal number should only include up to two digits after the decimal point"
-      );
-    }
-
-    if (amount.startsWith("0") && !amount.includes(".")) {
-      errors.push("The value is not correct");
-    }
-
-    if (amount.includes("-")) {
-      errors.push("Negative numbers are not allowed");
-    }
-
-    return errors;
-  };
-
   const submit = async () => {
     setAlert({ status: "progress", text: "Loading" });
 
@@ -97,7 +69,6 @@ const SendPage = () => {
       if (res.ok) {
         setAlert({ status: "success", text: data.message });
         saveSession(data.session);
-        // login(data.session.user, data.session.token);
 
         navigate("/balance");
       } else {
@@ -112,7 +83,7 @@ const SendPage = () => {
     return JSON.stringify({
       email: values.email,
       amount: values.amount,
-      ["token"]: authState.token,
+      token: authState.token,
     });
   };
 
