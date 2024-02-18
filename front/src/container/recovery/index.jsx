@@ -54,7 +54,7 @@ const RecoveryForm = () => {
       if (res.ok) {
         setAlert({ status: "success", text: data.message });
         saveSession(data.session);
-        navigate("/recovery-confirm");
+        navigate(`/recovery-confirm?email=${encodeURIComponent(values.email)}`);
       } else {
         setAlert({ status: "error", text: data.message });
       }

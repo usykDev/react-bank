@@ -53,8 +53,22 @@ router.post('/signup', function (req, res) {
 
 router.get('/signup-confirm', function (req, res) {
   const { renew, email } = req.query
-  if (renew) {
-    Confirm.create(email)
+
+  try {
+    if (renew) {
+      const confirm = Confirm.create(email)
+      return res.status(200).json({
+        confirm: confirm,
+      })
+    } else {
+      return res.status(400).json({
+        message: 'Confirmation failed',
+      })
+    }
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    })
   }
 })
 
@@ -156,8 +170,6 @@ router.post('/signin', function (req, res) {
 router.post('/recovery', function (req, res) {
   const { email } = req.body
 
-  console.log(email)
-
   if (!email) {
     return res.status(400).json({
       message: 'Required field is missing',
@@ -186,6 +198,27 @@ router.post('/recovery', function (req, res) {
 })
 
 // ====================================================
+
+router.get('/recovery-confirm', function (req, res) {
+  const { renew, email } = req.query
+
+  try {
+    if (renew) {
+      const confirm = Confirm.create(email)
+      return res.status(200).json({
+        confirm: confirm,
+      })
+    } else {
+      return res.status(400).json({
+        message: 'Recovery failed',
+      })
+    }
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    })
+  }
+})
 
 router.post('/recovery-confirm', function (req, res) {
   const { password, code } = req.body

@@ -21,6 +21,7 @@ const SignupConfirmForm = () => {
 
   const [disabled, setDisabled] = useState(false);
   const [alert, setAlert] = useState({ status: "", text: "" });
+  const [confirmationCode, setConfirmationCode] = useState("");
 
   useEffect(() => {
     checkDisabled();
@@ -84,6 +85,11 @@ const SignupConfirmForm = () => {
           email: authState.user.email,
         },
       });
+
+      if (response.data.confirm !== undefined) {
+        const code = response.data.confirm.code;
+        setConfirmationCode(code);
+      }
     } catch {}
   };
 
@@ -132,6 +138,8 @@ const SignupConfirmForm = () => {
         >
           {alert.text}
         </span>
+
+        <div>{confirmationCode}</div>
       </form>
     </Page>
   );

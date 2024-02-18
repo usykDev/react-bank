@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Page from "../../page";
+import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 import BackButtonComponent from "../../component/back-button";
 import Field from "../../component/field";
@@ -16,10 +18,13 @@ const RecoveryConfirmForm = () => {
     password: "",
   });
 
+  const { login } = useAuth();
+
   const navigate = useNavigate();
 
   const [disabled, setDisabled] = useState(false);
   const [alert, setAlert] = useState({ status: "", text: "" });
+  const [confirmationCode, setConfirmationCode] = useState("");
 
   useEffect(() => {
     checkDisabled();
@@ -55,10 +60,37 @@ const RecoveryConfirmForm = () => {
 
       if (res.ok) {
         setAlert({ status: "success", text: data.message });
+        login(data.session.user, data.session.token);
         saveSession(data.session);
-        navigate("/");
+        navigate("/balance");
       } else {
         setAlert({ status: "error", text: data.message });
+      }
+    } catch (error) {
+      setAlert({ status: "error", text: error.message });
+    }
+  };
+
+  const handleRenewLinkClick = async (e) => {
+    e.preventDefault();
+
+    try {
+      const emailParam = new URLSearchParams(window.location.search).get(
+        "email"
+      );
+
+      if (emailParam) {
+        const response = await axios.get(
+          `/recovery-confirm?renew=true&email=${emailParam}`
+        );
+
+        if (response.status === 200) {
+          const data = response.data;
+
+          if (data.confirm && data.confirm.code) {
+            setConfirmationCode(data.confirm.code);
+          }
+        }
       }
     } catch (error) {
       setAlert({ status: "error", text: error.message });
@@ -107,6 +139,13 @@ const RecoveryConfirmForm = () => {
           />
         </div>
 
+        <div className="link__prefix">
+          Lost your code?{" "}
+          <button onClick={handleRenewLinkClick} className="link">
+            Send it again
+          </button>
+        </div>
+
         <button
           type="submit"
           className={`button ${disabled ? "button--disabled" : ""}`}
@@ -121,6 +160,8 @@ const RecoveryConfirmForm = () => {
         >
           {alert.text}
         </span>
+
+        <div>{confirmationCode}</div>
       </form>
     </Page>
   );
