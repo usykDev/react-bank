@@ -10,6 +10,7 @@ router.get('/balance', function (req, res) {
   try {
     const token = req.query.token
     const session = Session.get(token)
+
     const transactions = session.user.getTransactions()
     const transactionsCopy = []
 
@@ -93,7 +94,6 @@ router.post('/receive-stripe', function (req, res) {
         message: 'Invalid session token',
       })
     }
-
     const user = User.getByEmail(session.user.email)
 
     if (!user) {
@@ -232,7 +232,6 @@ router.get('/transaction', function (req, res) {
         message: 'Invalid session or user data',
       })
     }
-
     const user = User.getByEmail(session.user.email)
 
     if (!user) {

@@ -12,7 +12,7 @@ class User {
   constructor({ email, password }) {
     this.id = User.#count++
 
-    this.email = String(email).toLocaleLowerCase()
+    this.email = String(email).toLowerCase()
     this.password = String(password)
     this.isConfirm = false
   }
@@ -21,8 +21,6 @@ class User {
     const user = new User(data)
 
     this.#list.push(user)
-
-    console.log(this.#list)
 
     return user
   }
@@ -87,8 +85,6 @@ class User {
     return this.listTransactions
   }
 
-  
-
   static updatePassword(password, passwordNew) {
     const user = this.getByPassword(password)
 
@@ -113,10 +109,12 @@ class User {
 
   static getByEmail(email) {
     return (
-      this.#list.find(
-        (user) =>
-          user.email === String(email).toLocaleLowerCase(),
-      ) || null
+      this.#list.find((user) => {
+        return (
+          String(user.email).toLowerCase() ===
+          String(email).toLowerCase()
+        )
+      }) || null
     )
   }
 

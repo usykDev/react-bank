@@ -15,8 +15,6 @@ User.create({
 router.post('/signup', function (req, res) {
   const { email, password } = req.body
 
-  console.log(req.body)
-
   if (!email || !password) {
     return res.status(400).json({
       message: 'Required fields are missing',
@@ -223,8 +221,6 @@ router.get('/recovery-confirm', function (req, res) {
 router.post('/recovery-confirm', function (req, res) {
   const { password, code } = req.body
 
-  console.log(password, code)
-
   if (!code || !password) {
     return res.status(400).json({
       message: 'Required fields are missing',
@@ -278,6 +274,7 @@ router.post('/change-email', function (req, res) {
 
   const emailRegex =
     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+
   if (!emailRegex.test(email)) {
     return res.status(400).json({
       message: 'Invalid email format',
@@ -309,7 +306,7 @@ router.post('/change-email', function (req, res) {
 
     const newEmail = User.getByEmail(email)
 
-    if (newEmail) {
+    if (newEmail && newEmail.id !== user.id) {
       return res.status(400).json({
         message: 'User with this email already exists',
       })

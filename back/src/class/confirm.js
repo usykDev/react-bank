@@ -17,7 +17,6 @@ class Confirm {
       this.delete(confirmation.code)
     }, 24 * 60 * 60 * 1000)
 
-    console.log(this.#list)
     return confirmation
   }
 
