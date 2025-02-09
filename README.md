@@ -1,25 +1,50 @@
-A banking app. 
+# Banking App
 
-Functionality: user registration and authentication, personal wallet management, transaction support and tracking of their history, notification monitoring.
+A secure banking application with user authentication, personal wallet management, transaction support, and notification monitoring.
 
-Backend:
-
-Folder: cd back
-
-Build command: npm install
-
-Start command: npm run dev
+![React bank](./front/public/readme_pic.png)
 
 
+## Features
+- User registration and authentication
+- Personal wallet management
+- Transaction support and history tracking
+- Notification monitoring
 
-Frontend:
+## Tech Stack
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Node.js, Express, MongoDB
+- **Authentication:** JWT (JSON Web Tokens)
 
-Folder: cd front
+## Installation & Setup
 
-Build command: npm install
+### Backend Setup
+1. Navigate to the backend folder:
+   ```sh
+   cd back
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the backend server:
+   ```sh
+   npm run dev
+   ```
 
-Start command: npm start
+### Frontend Setup
+1. Navigate to the frontend folder:
+   ```sh
+   cd front
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the frontend application:
+   ```sh
+   npm start
+   ```
 
-
-
-* when you reach the confirmation or recovery page, please press 'Send it again' to receive the confirmation code below
+## Confirmation & Recovery
+When you reach the confirmation or recovery page, please press **'Send it again'** to receive the confirmation code below.
