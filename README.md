@@ -12,9 +12,8 @@ A secure banking application with user authentication, personal wallet managemen
 - Notification monitoring
 
 ## Tech Stack
-- **Frontend:** React, Tailwind CSS
-- **Backend:** Node.js, Express, MongoDB
-- **Authentication:** JWT (JSON Web Tokens)
+- **Frontend:** React, SCSS
+- **Backend:** Node.js, Express
 
 ## Installation & Setup
 
@@ -46,5 +45,3 @@ A secure banking application with user authentication, personal wallet managemen
    npm start
    ```
 
-## Confirmation & Recovery
-When you reach the confirmation or recovery page, please press **'Send it again'** to receive the confirmation code below.
