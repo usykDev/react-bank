@@ -2,7 +2,7 @@
 
 A secure banking application with user authentication, personal wallet management, transaction support, and notification monitoring.
 
-![React bank](./front/public/readme_pic.png)
+![React bank](./front/public/readme_pic1.png)
 
 
 ## Features
